@@ -30,6 +30,7 @@ import org.edx.mobile.model.course.BlockPath;
 import org.edx.mobile.model.course.BlockType;
 import org.edx.mobile.model.course.CourseComponent;
 import org.edx.mobile.model.course.DiscussionBlockModel;
+import org.edx.mobile.model.course.EnrollmentMode;
 import org.edx.mobile.model.course.HasDownloadEntry;
 import org.edx.mobile.model.course.IBlock;
 import org.edx.mobile.model.course.VideoBlockModel;
@@ -362,8 +363,13 @@ public class CourseOutlineAdapter extends BaseAdapter {
         }
 
         if (isDenialFeatureBasedEnrolments) {
-            viewHolder.rowSubtitle.setText(R.string.not_available_on_mobile);
-            viewHolder.rowType.setIconColorResource(R.color.primaryXLightColor);
+            if(courseData.getMode().equalsIgnoreCase(EnrollmentMode.AUDIT.toString())){
+                viewHolder.rowSubtitle.setText(R.string.course_modal_unlock_graded_assignment);
+                viewHolder.lockedContent.setVisibility(View.VISIBLE);
+            }else {
+                viewHolder.rowSubtitle.setText(R.string.not_available_on_mobile);
+                viewHolder.rowType.setIconColorResource(R.color.primaryXLightColor);
+            }
             viewHolder.rowSubtitlePanel.setVisibility(View.VISIBLE);
             viewHolder.rowSubtitle.setVisibility(View.VISIBLE);
         }
@@ -739,6 +745,8 @@ public class CourseOutlineAdapter extends BaseAdapter {
                 .findViewById(R.id.row_subtitle_due_date);
         holder.rowSubtitleIcon = (IconImageView) convertView
                 .findViewById(R.id.row_subtitle_icon);
+        holder.lockedContent = (IconImageView) convertView
+                .findViewById(R.id.locked_content);
         holder.rowSubtitleIcon.setIconColorResource(R.color.primaryBaseColor);
         holder.noOfVideos = (TextView) convertView
                 .findViewById(R.id.no_of_videos);
@@ -764,6 +772,7 @@ public class CourseOutlineAdapter extends BaseAdapter {
         TextView rowSubtitleDueDate;
         IconImageView rowSubtitleIcon;
         IconImageView bulkDownload;
+        IconImageView lockedContent;
         TextView noOfVideos;
         LinearLayout numOfVideoAndDownloadArea;
         View rowSubtitlePanel;

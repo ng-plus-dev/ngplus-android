@@ -681,4 +681,13 @@ public class FirebaseAnalytics implements Analytics {
         event.putString(Keys.SCREEN_NAME, screenName);
         logFirebaseEvent(event.getName(), event.getBundle());
     }
+
+    @Override
+    public void trackLockedContentTapped(@NonNull String courseId, @NonNull String assignmentId) {
+        final FirebaseEvent event = new FirebaseEvent(Events.COURSE_UNIT_LOCKED_CONTENT, Values.LOCKED_CONTENT_CLICKED);
+        event.putCourseId(courseId);
+        event.putString(Keys.ASSIGNMENT_ID, assignmentId);
+        event.putString(Keys.SCREEN_NAME, Screens.COURSE_UNIT);
+        logFirebaseEvent(event.getName(), event.getBundle());
+    }
 }
