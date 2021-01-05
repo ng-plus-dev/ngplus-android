@@ -938,7 +938,7 @@ public class SegmentAnalytics implements Analytics {
                                         @Nullable String assignmentId, @NonNull String screenName) {
         final SegmentEvent aEvent = new SegmentEvent();
         aEvent.data.putValue(Keys.COURSE_ID, courseId);
-        if (TextUtils.isEmpty(assignmentId)) {
+        if (!TextUtils.isEmpty(assignmentId)) {
             aEvent.data.putValue(Keys.ASSIGNMENT_ID, assignmentId);
         }
         aEvent.data.putValue(Keys.SCREEN_NAME, screenName);
@@ -951,7 +951,7 @@ public class SegmentAnalytics implements Analytics {
         final SegmentEvent aEvent = new SegmentEvent();
         aEvent.properties.putValue(Keys.NAME, Values.VALUE_PROP_LEARN_MORE_CLICKED);
         aEvent.data.putValue(Keys.COURSE_ID, courseId);
-        if (TextUtils.isEmpty(assignmentId)) {
+        if (!TextUtils.isEmpty(assignmentId)) {
             aEvent.data.putValue(Keys.ASSIGNMENT_ID, assignmentId);
         }
         aEvent.data.putValue(Keys.SCREEN_NAME, screenName);
