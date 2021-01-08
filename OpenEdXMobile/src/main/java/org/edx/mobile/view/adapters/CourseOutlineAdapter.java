@@ -363,10 +363,11 @@ public class CourseOutlineAdapter extends BaseAdapter {
         }
 
         if (isDenialFeatureBasedEnrolments) {
-            if(courseData.getMode().equalsIgnoreCase(EnrollmentMode.AUDIT.toString())){
+            if (environment.getRemoteFeaturePrefs().isValuePropEnabled() &&
+                    courseData.getMode().equalsIgnoreCase(EnrollmentMode.AUDIT.toString())) {
                 viewHolder.rowSubtitle.setText(R.string.course_modal_unlock_graded_assignment);
                 viewHolder.lockedContent.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 viewHolder.rowSubtitle.setText(R.string.not_available_on_mobile);
                 viewHolder.rowType.setIconColorResource(R.color.primaryXLightColor);
             }

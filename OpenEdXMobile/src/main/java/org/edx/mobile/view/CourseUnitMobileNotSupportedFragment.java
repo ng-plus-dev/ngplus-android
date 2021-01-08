@@ -41,13 +41,21 @@ public class CourseUnitMobileNotSupportedFragment extends CourseUnitFragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (unit.getAuthorizationDenialReason() == AuthorizationDenialReason.FEATURE_BASED_ENROLLMENTS) {
-            binding.containerLayoutNotAvailable.setVisibility(View.GONE);
-            binding.llGradedContentLayout.setVisibility(View.VISIBLE);
-            binding.btnLearnMore.setOnClickListener(v ->
-                    CourseModalDialogFragment.newInstance(environment.getConfig().getPlatformName(),
-                    false, unit.getCourseId(), unit.getBlockId())
-                    .show(getChildFragmentManager(), CourseModalDialogFragment.TAG));
-            environment.getAnalyticsRegistry().trackLockedContentTapped(unit.getCourseId(), unit.getBlockId());
+            if (environment.getRemoteFeaturePrefs().isValuePropEnabled()) {
+                binding.containerLayoutNotAvailable.setVisibility(View.GONE);
+                binding.llGradedContentLayout.setVisibility(View.VISIBLE);
+                binding.btnLearnMore.setOnClickListener(v ->
+                        CourseModalDialogFragment.newInstance(environment.getConfig().getPlatformName(),
+                                false, unit.getCourseId(), unit.getBlockId())
+                                .show(getChildFragmentManager(), CourseModalDialogFragment.TAG));
+                environment.getAnalyticsRegistry().trackLockedContentTapped(unit.getCourseId(), unit.getBlockId());
+            } else {
+                binding.containerLayoutNotAvailable.setVisibility(View.VISIBLE);
+                binding.llGradedContentLayout.setVisibility(View.GONE);
+                binding.contentErrorIcon.setIcon(FontAwesomeIcons.fa_lock);
+                binding.notAvailableMessage.setText(R.string.not_available_on_mobile);
+                binding.notAvailableMessage2.setVisibility(View.GONE);
+            }
         } else {
             binding.containerLayoutNotAvailable.setVisibility(View.VISIBLE);
             binding.llGradedContentLayout.setVisibility(View.GONE);
