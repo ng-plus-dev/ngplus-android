@@ -841,6 +841,7 @@ public interface Analytics {
         public static String removeUnSupportedCharacters(String value) {
             return value.replaceAll(":", "_")
                     .replaceAll("-", "_")
+                    .replaceAll("_ ", "_")
                     .replaceAll("__", "_");
         }
 
