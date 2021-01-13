@@ -11,9 +11,10 @@
             android:id="@+id/ll_graded_content_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/widget_margin_double"
             android:background="@color/infoXXLight"
             android:orientation="vertical"
-            android:padding="@dimen/container_padding"
+            android:padding="@dimen/edx_margin"
             android:visibility="gone"
             tools:visibility="visible">
 
@@ -59,9 +60,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/widget_margin"
+                android:layout_marginEnd="@dimen/widget_margin"
                 android:background="@color/primaryBaseColor"
                 android:fontFamily="?attr/fontSemiBold"
-                android:padding="@dimen/edx_half_margin"
+                android:includeFontPadding="false"
+                android:padding="@dimen/container_padding"
                 android:text="@string/course_value_prop_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/edx_small" />
