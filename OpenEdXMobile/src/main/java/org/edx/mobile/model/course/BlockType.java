@@ -23,6 +23,7 @@ public enum  BlockType {
     VIDEO{ @Override public boolean isContainer() {return false;} },
     HTML{ @Override public boolean isContainer() {return false;} },
     PROBLEM{ @Override public boolean isContainer() {return false;} },
+    OPENASSESSMENT{ @Override public boolean isContainer() {return false;} },
     DISCUSSION{ @Override public boolean isContainer() {return false;} },
     OTHERS{ @Override public boolean isContainer() {return false;} };
 

@@ -110,6 +110,7 @@ public class CourseUnitPagerAdapter extends FragmentStateAdapter {
         } else if (minifiedUnit.getType() != BlockType.VIDEO &&
                 minifiedUnit.getType() != BlockType.HTML &&
                 minifiedUnit.getType() != BlockType.OTHERS &&
+                minifiedUnit.getType() != BlockType.OPENASSESSMENT &&
                 minifiedUnit.getType() != BlockType.DISCUSSION &&
                 minifiedUnit.getType() != BlockType.PROBLEM) {
             unitFragment = CourseUnitEmptyFragment.newInstance(minifiedUnit);
